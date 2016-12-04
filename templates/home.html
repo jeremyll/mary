@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <title>Mary Poppins</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style>
+    body {
+       max-width: 800px;
+       margin: auto;
+    }
+    input, submit, a { font-size: 250%; }
+    .full_width { 
+      width:100%;
+    }
+
+    ul { 
+      list-style-type: none; 
+    }
+
+  </style>
+</html><body>
+  <h1>Make me talk!</h1>
+  <form method="post">
+    <input class='full_width' type="text" name="text" placeholder="Hello you wonderful hackers you" autofocus="autofocus">
+    <input type="submit" value="Submit">
+  </form>
+  {% if session.texts %}
+    <ul>
+    {% for value in session.texts|reverse %}
+      <a class="btn btn-default btn-lg" href="?text={{ value }}">{{ value }}</a>
+    {% endfor %}
+    </ul>
+  {% endif %}
+</body>
