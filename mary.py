@@ -55,7 +55,7 @@ def gif(search_term):
             for chunk in r.iter_content(1024):
                 f.write(chunk)
 
-        call(['timeout', '10', 'send-video', '-h', 'ft.noise', '-l', '15', file_path])
+        call(['timeout', '10', 'send-image', '-h', 'ft.noise', '-l', '15', file_path])
 
     return 'ok'
 
