@@ -11,6 +11,10 @@ def say(text):
     command = [SAY_COMMAND, text]
     call(command)
 
+def play(_file='dong.wav'):
+    command = ['play', _file]
+    call(command)
+
 @app.route("/", methods=['GET', 'POST'])
 def home():
     text = request.args.get('text')
@@ -24,6 +28,12 @@ def home():
     if text:
         say(text)
     return render_template('home.html')
+
+@app.route("/dong/", methods=['POST'])
+def dong():
+    if request.method == 'POST':
+        play()
+    return 'ok'
 
 if __name__ == "__main__":
     app.run('0.0.0.0')
