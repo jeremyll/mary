@@ -2,6 +2,8 @@ from subprocess import call
 
 from flask import Flask, render_template, request, session
 
+PROJECT_ROOT = os.path.basedir(__file__)
+
 SAY_COMMAND = 'say'
 
 app = Flask(__name__)
@@ -12,7 +14,7 @@ def say(text):
     call(command)
 
 def play(_file='dong.wav'):
-    command = ['play', _file]
+    command = ['play', os.path.join(PROJECT_ROOT, _file)]
     call(command)
 
 @app.route("/", methods=['GET', 'POST'])
