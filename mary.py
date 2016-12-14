@@ -38,5 +38,25 @@ def dong():
         play()
     return 'ok'
 
+@app.route("/gif/<search_term>", methods=['POST'])
+def gif(search_term):
+    giphy_url = 'http://api.giphy.com/v1/gifs/search?q=%s&api_key=dc6zaTOxFJmzC'
+
+    results = requests.get(giphy_url % search_term)
+    data = results.json()
+    download_link = data['data'][0]['images']['downsized']['url']
+    r = requests.get(download_link)
+    
+    file_path = '/tmp/ft.gif'
+
+    if r.status_code == 200:
+        with open(file_path, 'wb') as f:
+            for chunk in r.iter_content(1024):
+                f.write(chunk)
+
+    call(['send-video', file_path])
+
+    return 'ok'
+
 if __name__ == "__main__":
     app.run('0.0.0.0')
