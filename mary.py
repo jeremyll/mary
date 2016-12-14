@@ -3,7 +3,7 @@ from subprocess import call
 
 from flask import Flask, render_template, request, session
 
-PROJECT_ROOT = os.path.basedir(__file__)
+PROJECT_ROOT = os.path.dirname(__file__)
 
 SAY_COMMAND = 'say'
 
